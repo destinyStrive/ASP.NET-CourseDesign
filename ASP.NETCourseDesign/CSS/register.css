@@ -1,0 +1,22 @@
+﻿.info_table {
+    padding: 50px 100px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+}
+.info_table .input {
+    
+}
+.info_table .bottom_btn {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #03e9f4;
+    outline: none;
+    color: #03e9f4;
+    padding: 5px 10px;
+    margin-right: 10px;
+    text-decoration: none;
+}
+.info_table .bottom_btn:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #03e9f4;
+}

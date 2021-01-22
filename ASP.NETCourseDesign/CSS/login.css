@@ -1,0 +1,174 @@
+﻿/* 整体布局 */
+.login {
+    display: flex;
+    /* 主轴改为垂直向下 */
+    flex-direction: column;
+    /* 交叉轴方向居中，也就是水平居中 */
+    align-items: center;
+    width: 400px;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* 标题 */
+.login h2 {
+color: #fff;
+margin-bottom: 30px;
+}
+
+/* 用户名、密码 */
+.login .login_box {
+position: relative;
+width: 100%;
+}
+.login .login_box .input {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 30px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    border-bottom: 1px solid #fff;
+}
+.login .login_box .label {
+    position: absolute;
+    color: white;
+    padding: 10px 0;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transition: all 0.5s;
+}
+.login .login_box .underline {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    height: 3px;
+    width: 100%;
+}
+.login .login_box .underline::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #03e9f4;
+    transform: scaleX(0);
+    transition: all 0.3s;
+}
+.login .login_box .input:focus + .label, /* +选择器：表示相邻的第一个标签，强调相邻 */
+.login .login_box .input:valid + .label {
+    transform: translateY(-20px);
+    font-size: 13px;
+    color: #03e9f4;
+}
+.login .login_box .input:focus ~ .underline::before, /* ~选择器：表示这个元素后面所有的 .underline */
+.login .login_box .input:valid ~ .underline::before {
+    transform: scaleX(1);
+}
+
+/* 登录按钮 */
+.login .login_btn {
+    background-color: transparent;
+    color: #03e9f4;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+.login .login_btn:hover {
+    color: white;
+}
+.btn_container {
+    padding: 10px 20px;
+    position: relative;
+    overflow: hidden;
+}
+.btn_container:hover {
+    background-color: #03e9f4;
+    box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 100px #03e9f4;
+    cursor: pointer;
+}
+.btn_container span {
+    display: block;
+    position: absolute;
+}
+.btn_container span:first-child {
+    width: 100%;
+    height: 2px;
+    top: 0;
+    left: -100%;
+    background: linear-gradient(to right, transparent, #03e9f4);
+    animation: move1 1s linear infinite;
+}
+.btn_container span:nth-child(2) {
+    right: 0;
+    top: -100%;
+    height: 100%;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, #03e9f4);
+    animation: move2 1s linear 0.25s infinite;
+}
+.btn_container span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to left, transparent, #03e9f4);
+    animation: move3 1s linear 0.5s infinite;
+}
+.btn_container span:nth-child(4) {
+    left: 0;
+    bottom: -100%;
+    height: 100%;
+    width: 2px;
+    background: linear-gradient(to top, transparent, #03e9f4);
+    animation: move4 1s linear 0.75s infinite;
+}
+@keyframes move1 {
+    0% {
+        left: -100%;
+    }
+
+    50%, 100% {
+        left: 100%;
+    }
+}
+@keyframes move2 {
+    0% {
+        top: -100%;
+    }
+
+    50%, 100% {
+        top: 100%;
+    }
+}
+@keyframes move3 {
+    0% {
+        right: -100%;
+    }
+
+    50%, 100% {
+        right: 100%;
+    }
+}
+@keyframes move4 {
+    0% {
+        bottom: -100%;
+    }
+
+    50%, 100% {
+        bottom: 100%;
+    }
+}
+
+/* 注册链接 */
+.login .register_link {
+    color: rgba(246, 246, 246, 0.5);
+    text-decoration: none;
+    font-size: 13px;
+    margin-top: 20px;
+}
+.login .register_link:hover {
+    color: rgba(246, 246, 246, 1);
+}
