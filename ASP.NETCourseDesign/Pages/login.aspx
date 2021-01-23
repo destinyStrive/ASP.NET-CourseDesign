@@ -31,7 +31,7 @@
                 <span></span>
                 <asp:Button ID="LoginBtn" CssClass="login_btn" runat="server" Text="登录" OnClick="LoginBtn_Click" />
             </div>
-            <asp:LinkButton ID="LinkButton1" CssClass="register_link" runat="server" PostBackUrl="Register.aspx">还没账号？</asp:LinkButton>
+            <asp:LinkButton ID="LinkButton1" CssClass="register_link" runat="server" PostBackUrl="register.aspx">还没账号？</asp:LinkButton>
         </div>
     </form>
 </body>

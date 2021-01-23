@@ -1,0 +1,51 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="userInfo.master.cs" Inherits="ASP.NETCourseDesign.Masters.userInfo" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+    <link href="/CSS/userInfoCss/masterCss.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+
+            <nav>
+                <ul>
+                    <li>
+                        <asp:HyperLink ID="HyperLink1" CssClass="a" runat="server" NavigateUrl="/Pages/userInfo/album.aspx">个人相册</asp:HyperLink>
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="HyperLink2" CssClass="a"  runat="server" NavigateUrl="/Pages/userInfo/like.aspx">个人喜欢</asp:HyperLink>
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="HyperLink3" CssClass="a"  runat="server" NavigateUrl="/Pages/userInfo/profile.aspx">个人信息</asp:HyperLink>
+                    </li>
+                </ul>
+            </nav> 
+
+            <div class="content">
+                <div class="top">
+                    <div class="user_wrapper">
+                        <div class="user_img" id="UserImg" runat="server"></div>
+                        <div class="user_uname" id="UserUname" runat="server"></div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+
+        </div>
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+    </form>
+</body>
+</html>

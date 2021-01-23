@@ -1,16 +1,19 @@
-﻿.info_table {
+﻿/* 整个表单 */
+.info_table {
     padding: 50px 100px;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    box-shadow: 0 0 25px #03e9f4;
 }
-.info_table .input {
-    
-}
+/* 底部按钮 */
 .info_table .bottom_btn {
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid #03e9f4;
+    
     outline: none;
+
     color: #03e9f4;
+    font-size: 14px;
+
     padding: 5px 10px;
     margin-right: 10px;
     text-decoration: none;

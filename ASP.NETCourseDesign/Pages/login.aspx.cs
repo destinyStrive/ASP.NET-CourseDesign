@@ -51,9 +51,11 @@ namespace ASP.NETCourseDesign.Pages
                     else
                     {
                         // 登陆成功...
-                        Response.Write("<script>alert('登陆成功！');</script>");
+                        Session["username"] = username;
+                        Response.Redirect("userInfo/album.aspx"); // 跳转到当前用户的相册页面
                     }
                 }
+                conn.Close();
             }
             catch(Exception ee)
             {

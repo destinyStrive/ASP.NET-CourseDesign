@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="ASP.NETCourseDesign.Pages.Register" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="ASP.NETCourseDesign.Pages.Register" %>
 
 <!DOCTYPE html>
 
@@ -89,6 +89,13 @@
                         <asp:ListItem>玩游戏</asp:ListItem>
                         <asp:ListItem>唱歌</asp:ListItem>
                     </asp:CheckBoxList>
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow><asp:TableCell><br /></asp:TableCell></asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell HorizontalAlign="Right">头像：</asp:TableCell>
+                <asp:TableCell>
+                    <asp:FileUpload ID="ImageUpload" runat="server" />
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow><asp:TableCell><br /></asp:TableCell></asp:TableRow>
