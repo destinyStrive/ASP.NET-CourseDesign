@@ -117,7 +117,9 @@
     <Content Include="CSS\base.css" />
     <Content Include="CSS\login.css" />
     <Content Include="CSS\register.css" />
+    <Content Include="CSS\userInfoCss\album.css" />
     <Content Include="CSS\userInfoCss\masterCss.css" />
+    <Content Include="CSS\userInfoCss\profile.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -132,7 +134,11 @@
     <Content Include="Images\1.jpg" />
     <Content Include="Images\2.jpg" />
     <Content Include="Images\3.jpg" />
+    <Content Include="Images\userAlbum\上传.svg" />
     <Content Include="Images\userInfoBkImg.jpg" />
+    <Content Include="Images\userProfile\修改.svg" />
+    <Content Include="Images\userProfile\完成.svg" />
+    <Content Include="index.aspx" />
     <Content Include="Masters\userInfo.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Pages\login.aspx" />
@@ -180,6 +186,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Masters\userInfo.Master.cs">
       <DependentUpon>userInfo.Master</DependentUpon>
@@ -246,7 +259,9 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Images\uploadedImgs\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />

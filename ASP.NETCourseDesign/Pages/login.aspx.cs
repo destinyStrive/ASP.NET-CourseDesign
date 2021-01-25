@@ -23,43 +23,36 @@ namespace ASP.NETCourseDesign.Pages
             string username = Username.Text;
             string password = Password.Text;
 
-            string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            SqlConnection conn = new SqlConnection(connStr);
-            try
+            MyDb dbHelper = new MyDb();
+            string sql1 = "select count(*) from UserInfo where username=@username";
+            SqlParameter[] params1 = new SqlParameter[1];
+            params1[0] = new SqlParameter("@username", username);
+            DataTable dt1 = dbHelper.GetRecords(sql1, params1);
+            int cnt1 = (int)dt1.Rows[0][0];
+
+            string sql2 = "select count(*) from UserInfo where username=@username and password=@password";
+            SqlParameter[] params2 = new SqlParameter[2];
+            params2[0] = new SqlParameter("@username", username);
+            params2[1] = new SqlParameter("@password", password);
+            DataTable dt2 = dbHelper.GetRecords(sql2, params2);
+            int cnt2 = (int)dt2.Rows[0][0];
+
+            if (cnt1 == 0)
             {
-                conn.Open();
-                SqlCommand cmd1 = new SqlCommand("select count(*) from UserInfo where username=@username", conn);
-                cmd1.Parameters.Add("@username", SqlDbType.VarChar);
-                cmd1.Parameters[0].Value = username;
-                int cnt1 = (int)cmd1.ExecuteScalar();
-                if (cnt1 == 0)
+                Response.Write("<script>alert('用户名不存在！');</script>");
+            }
+            else
+            {  
+                if (cnt2 == 0)
                 {
-                    Response.Write("<script>alert('用户名不存在！');</script>");
+                    Response.Write("<script>alert('密码错误！');</script>");
                 }
                 else
                 {
-                    SqlCommand cmd2 = new SqlCommand("select count(*) from UserInfo where username=@username and password=@password", conn);
-                    cmd2.Parameters.Add("@username", SqlDbType.VarChar);
-                    cmd2.Parameters.Add("@password", SqlDbType.VarChar);
-                    cmd2.Parameters[0].Value = username;
-                    cmd2.Parameters[1].Value = password;
-                    int cnt2 = (int)cmd2.ExecuteScalar();
-                    if (cnt2 == 0)
-                    {
-                        Response.Write("<script>alert('密码错误！');</script>");
-                    }
-                    else
-                    {
-                        // 登陆成功...
-                        Session["username"] = username;
-                        Response.Redirect("userInfo/album.aspx"); // 跳转到当前用户的相册页面
-                    }
+                    // 登陆成功...
+                    Session["username"] = username;
+                    Response.Redirect("userInfo/album.aspx"); // 跳转到当前用户的相册页面
                 }
-                conn.Close();
-            }
-            catch(Exception ee)
-            {
-                Response.Write(ee.Message);
             }
         }
     }

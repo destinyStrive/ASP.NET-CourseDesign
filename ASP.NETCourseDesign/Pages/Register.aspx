@@ -30,7 +30,8 @@
                     <asp:TextBox ID="Username" runat="server" CssClass="input"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*必填" ForeColor="Red" ControlToValidate="Username"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*必填" ForeColor="Red" ControlToValidate="Username" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="用户名已存在！" ForeColor="Red"></asp:CustomValidator>
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow><asp:TableCell><br /></asp:TableCell></asp:TableRow>
@@ -59,12 +60,22 @@
                 <asp:TableCell>
                     <asp:TextBox ID="Email" runat="server" CssClass="input"></asp:TextBox>
                 </asp:TableCell>
+                <asp:TableCell>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*必填" ForeColor="Red" ControlToValidate="Email" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="邮箱格式不合法" ForeColor="Red" ControlToValidate="Email"
+                        ValidationExpression="^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$"></asp:RegularExpressionValidator>
+                </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow><asp:TableCell><br /></asp:TableCell></asp:TableRow>
             <asp:TableRow>
                 <asp:TableCell HorizontalAlign="Right" >年龄：</asp:TableCell>
                 <asp:TableCell>
                     <asp:TextBox ID="Age" runat="server" CssClass="input"></asp:TextBox>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="*必填" ForeColor="Red" ControlToValidate="Age" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="年龄在1~999之间" ForeColor="Red" ControlToValidate="Age"
+                        ValidationExpression="^\d{1,3}$"></asp:RegularExpressionValidator>
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow><asp:TableCell><br /></asp:TableCell></asp:TableRow>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ASP.NETCourseDesign.App_Code;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -19,79 +20,66 @@ namespace ASP.NETCourseDesign.Pages
 
         protected void RegisterBtn_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid)
+            // 1. 获取用户的输入
+            string username = Username.Text;
+            string psd1 = Psd1.Text;
+            string psd2 = Psd2.Text;
+            string email = Email.Text;
+            int age = int.Parse(Age.Text);
+            string sex = null;
+            foreach (ListItem li in SexRadioBtn.Items)
             {
-                // 1. 验证通过，获取用户的输入
-                string username = Username.Text;
-                string psd1 = Psd1.Text;
-                string psd2 = Psd2.Text;
-                string email = Email.Text;
-                int age = int.Parse(Age.Text);
-                string sex = null;
-                foreach (ListItem li in SexRadioBtn.Items)
+                if (li.Selected)
                 {
-                    if (li.Selected)
-                    {
-                        sex = li.Value;
-                        break;
-                    }
+                    sex = li.Value;
+                    break;
                 }
-                string hobbies = "";
-                foreach (ListItem li in HobbyCheckBox.Items)
+            }
+            string hobbies = "";
+            foreach (ListItem li in HobbyCheckBox.Items)
+            {
+                if (li.Selected)
                 {
-                    if (li.Selected)
-                    {
-                        hobbies += li.Value + ",";
-                    }
+                    hobbies += li.Value + ",";
                 }
-                if (hobbies == "") hobbies = "无";
-                else hobbies = hobbies.Substring(0, hobbies.Length - 1);
-                string image_path = UploadPic();
-                string remark = Remark.Text;
+            }
+            if (hobbies == "") hobbies = "无";
+            else hobbies = hobbies.Substring(0, hobbies.Length - 1);
+            string image_path = UploadPic();
+            string remark = Remark.Text;
 
-                // 2. 将数据插入数据库
-                string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-                SqlConnection conn = new SqlConnection(connStr);
-                try
-                {
-                    conn.Open();
-                    SqlCommand cmd1 = new SqlCommand("insert into UserInfo values(@username, @password, @email, @age, @sex, @hobbies, @image, @remark)", conn);
-                    cmd1.Parameters.Add("@username", SqlDbType.VarChar);
-                    cmd1.Parameters.Add("@password", SqlDbType.VarChar);
-                    cmd1.Parameters.Add("@email", SqlDbType.VarChar);
-                    cmd1.Parameters.Add("@age", SqlDbType.Int);
-                    cmd1.Parameters.Add("@sex", SqlDbType.NChar);
-                    cmd1.Parameters.Add("@hobbies", SqlDbType.NVarChar);
-                    cmd1.Parameters.Add("@image", SqlDbType.NVarChar);
-                    cmd1.Parameters.Add("@remark", SqlDbType.NVarChar);
-                    cmd1.Parameters[0].Value = username;
-                    cmd1.Parameters[1].Value = psd1;
-                    cmd1.Parameters[2].Value = email;
-                    cmd1.Parameters[3].Value = age;
-                    cmd1.Parameters[4].Value = sex;
-                    cmd1.Parameters[5].Value = hobbies;
-                    cmd1.Parameters[6].Value = image_path;
-                    cmd1.Parameters[7].Value = remark;
-                    int cnt1 = (int)cmd1.ExecuteNonQuery();
-                    if (cnt1 == 0)
-                    {
-                        Response.Write("<script>alert('注册失败！');</script>");
-                    }
-                    else
-                    {
-                        Response.Write("<script>alert('注册成功！');</script>");
-                    }
-                    conn.Close();
-                }
-                catch (Exception ee)
-                {
-                    Response.Write(ee.Message);
-                }
-            }
-            else
+            // 2. 判断用户名是否已存在
+            MyDb dbHelper = new MyDb();
+            string sql1 = "select count(*) from UserInfo where username=@username";
+            SqlParameter[] params1 = new SqlParameter[1];
+            params1[0] = new SqlParameter("@username", username);
+            DataTable dt1 = dbHelper.GetRecords(sql1, params1);
+            int cnt1 = (int)dt1.Rows[0][0];
+            CustomValidator1.IsValid = cnt1 == 0; // 不存在 => cnt1为0 => IsValid为true
+
+            // 3. 将数据插入数据库
+            if(Page.IsValid)
             {
-                // 验证不通过...
-            }
+                string sql2 = "insert into UserInfo values(@username, @password, @email, @age, @sex, @hobbies, @image, @remark)";
+                SqlParameter[] params2 = new SqlParameter[8];
+                params2[0] = new SqlParameter("@username", username);
+                params2[1] = new SqlParameter("@password", psd1);
+                params2[2] = new SqlParameter("@email", email);
+                params2[3] = new SqlParameter("@age", age);
+                params2[4] = new SqlParameter("@sex", sex);
+                params2[5] = new SqlParameter("@hobbies", hobbies);
+                params2[6] = new SqlParameter("@image", image_path);
+                params2[7] = new SqlParameter("@remark", remark);
+                int cnt2 = dbHelper.cud(sql2, params2);
+                if (cnt2 == 0)
+                {
+                    Response.Write("<script>alert('注册失败！');</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('注册成功！');</script>");
+                }
+            } 
         }
         protected string UploadPic()
         {

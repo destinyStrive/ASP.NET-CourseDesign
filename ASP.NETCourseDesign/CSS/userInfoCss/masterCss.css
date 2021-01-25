@@ -124,6 +124,7 @@ nav ul li .a:hover {
     height: 950px;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ASP.NETCourseDesign.App_Code;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -27,26 +28,12 @@ namespace ASP.NETCourseDesign.Masters
         // 获取username用户的头像
         protected string getImgPath(string username)
         {
-            string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            SqlConnection conn = new SqlConnection(connStr);
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("select * from UserInfo where username=@username", conn);
-                cmd.Parameters.Add("@username", SqlDbType.VarChar);
-                cmd.Parameters[0].Value = username;
-                SqlDataReader dr = cmd.ExecuteReader();
-                if(dr.Read())
-                {
-                    return dr["image"].ToString();
-                }
-                return null;
-            }
-            catch (Exception ee)
-            {
-                Response.Write(ee.Message);
-                return null;
-            }
+            MyDb dbHelper = new MyDb();
+            string sql = "select * from UserInfo where username=@username";
+            SqlParameter[] param = new SqlParameter[1];
+            param[0] = new SqlParameter("@username", username);
+            DataTable dt = dbHelper.GetRecords(sql, param);
+            return (string)dt.Rows[0]["image"];
         }
     }
 }

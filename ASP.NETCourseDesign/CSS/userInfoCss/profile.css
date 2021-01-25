@@ -1,0 +1,35 @@
+﻿/* 修改资料按钮、完成修改按钮 */
+.control_btns {
+    display: flex;
+    width: 250px;
+    height: 100px;
+    justify-content: space-around;
+    align-items: center;
+    margin:0 auto;
+}
+.modify_btn, .finish_btn {
+    background-color: #409eff;
+    width: 89px;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    white-space: nowrap;
+    position: relative;
+}
+.modify_btn {
+    background-image: url('/Images/userProfile/修改.svg');
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.finish_btn {
+    background-image: url('/Images/userProfile/完成.svg');
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.modify_btn:hover, .finish_btn:hover {
+    cursor: pointer;
+    background-color: #6aaff5;
+}
+
