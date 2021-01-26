@@ -9,20 +9,28 @@
                 fileupload1.click();
             }
         }
+        // 通过js把要编辑的图片id和文件名写入HiddenField
+        function passIdFilename(id, name) {
+            var old_id = document.getElementById("ContentPlaceHolder2_OldId");
+            old_id.value = id;
+
+            var old_filename = document.getElementById("ContentPlaceHolder2_OldFilename");
+            old_filename.value = name;
+
+            console.log(id);
+            console.log(name);
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True" ProviderName="System.Data.SqlClient" 
-        SelectCommand="SELECT [Id], [imgpath], [name], [type], [uploadtime], [downtimes] FROM [ImgInfo] WHERE ([username] = @username)" 
-        DeleteCommand="DELETE FROM ImgInfo WHERE (Id = @Id)">
-        <DeleteParameters>
-            <asp:QueryStringParameter Name="Id"/>
-        </DeleteParameters>
+        SelectCommand="SELECT [Id], [imgpath], [name], [type], [uploadtime], [downtimes] FROM [ImgInfo] WHERE ([username] = @username)">
         <SelectParameters>
             <asp:SessionParameter Name="username" SessionField="username" Type="String" />
         </SelectParameters>
         
     </asp:SqlDataSource>
+
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical"
         AllowSorting="True" AllowPaging="True" style="margin-bottom: 15px;" PageSize="5" DataKeyNames="Id">
         <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -39,7 +47,12 @@
             <asp:BoundField DataField="downtimes" HeaderText="下载次数" SortExpression="downtimes" ItemStyle-HorizontalAlign="center" >
                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:BoundField>
-            <asp:CommandField HeaderText="操作" ShowEditButton="True" ShowDeleteButton="True"/>
+            <asp:TemplateField HeaderText="操作">
+                <ItemTemplate>
+                    <a href="#popup1" class="editBtn" onclick="passIdFilename(  <%# Eval("Id") %>  , '<%# Eval("name") %>')"></a>
+                    <a href="/Pages/imgOperation/delete.aspx?Id=<%# Eval("Id") %>&Filename=<%# Eval("name") %>" onclick="return confirm('确认删除吗？');" class="deleteBtn"></a>
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
         <FooterStyle BackColor="#CCCCCC" />
         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -75,7 +88,6 @@
                 CommandName="Page" Text="GO" />
         </PagerTemplate>
     </asp:GridView>
-   
     <div class="control_btns">
         <input id="FakeUpload" type="button" value="选择图片" class="fake_upload" onclick="click_fileupload1()" />
         <asp:FileUpload ID="FileUpload1" CssClass="file_upload" runat="server" />
@@ -91,5 +103,38 @@
             <asp:ListItem>其他</asp:ListItem>
         </asp:DropDownList>
         <asp:Button ID="UpLoading" CssClass="uploading" runat="server" Text="上传" OnClick="UpLoading_Click" />
+    </div>
+</asp:Content>
+<%-- 用于用户修改图片的模态框 --%>
+<asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <div id="popup1" class="overlay">
+	    <div class="popup">
+            <div class="modal_header">
+                <span class="title">修改图片</span>
+		        <button class="close">&times;</button>
+            </div>
+            <hr/>
+            <div class="modal_content">
+                <asp:HiddenField ID="OldId" runat="server" />
+                <asp:HiddenField ID="OldFilename" runat="server" />
+                <asp:FileUpload ID="NewImg" runat="server" style="width: 170px; margin-top: 20px;"/><br />
+                <asp:DropDownList ID="NewType" runat="server" style="margin-top: 30px;">
+                    <asp:ListItem>--图片类型--</asp:ListItem>
+                    <asp:ListItem>人物</asp:ListItem>
+                    <asp:ListItem>动物</asp:ListItem>
+                    <asp:ListItem>风景</asp:ListItem>
+                    <asp:ListItem>建筑</asp:ListItem>
+                    <asp:ListItem>意境</asp:ListItem>
+                    <asp:ListItem>交通</asp:ListItem>
+                    <asp:ListItem>城市</asp:ListItem>
+                    <asp:ListItem>其他</asp:ListItem>
+                </asp:DropDownList>
+            </div> 
+            <hr style="position: absolute; bottom: 40px; left: 10px; right: 10px;" />
+            <div class="modal_btns">
+                <asp:Button id="UploadBtn" class="confirm_btn" runat="server" Text="确认" OnClick="UploadBtn_Click" />
+            </div>
+        </div>
     </div>
 </asp:Content>

@@ -6,12 +6,30 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+
+    <link href="/CSS/index.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
-        <h2 style="font-weight: bold;">欢迎进入在线相册管理系统！</h2>
-        <a href="/Pages/login.aspx">登录</a>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True" ProviderName="System.Data.SqlClient" SelectCommand="SELECT * FROM [ImgInfo]"></asp:SqlDataSource>
+        <%-- 页面基本布局 --%>
+        <h2>在线相册系统</h2>
+        <asp:DropDownList ID="TypeList" runat="server">
+            <asp:ListItem>全部</asp:ListItem>
+        </asp:DropDownList>
+
+        <div class="container">
+            <asp:Label ID="WelcomeInfo" runat="server"></asp:Label>
+            <asp:HyperLink ID="LinkUserHome" runat="server" NavigateUrl="/Pages/userInfo/album.aspx">个人主页</asp:HyperLink>
+            <asp:HyperLink ID="LinkTo" runat="server"></asp:HyperLink>
+        </div>
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+
+
+        <%-- SqlDataSource --%>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True" ProviderName="System.Data.SqlClient" 
+            SelectCommand="SELECT * FROM [ImgInfo]"></asp:SqlDataSource>
+        <%-- GridView --%>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical"
         AllowSorting="True" AllowPaging="True" style="margin-bottom: 15px;" PageSize="6" DataKeyNames="Id">
         <AlternatingRowStyle BackColor="#CCCCCC" />

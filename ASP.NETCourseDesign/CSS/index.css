@@ -1,0 +1,46 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+/* 背景样式 */
+body {
+    background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.circle1, .circle2 {
+    background: white;
+    background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+    height: 20rem;
+    width: 20rem;
+    position: absolute;
+    border-radius: 20rem;
+    z-index: -10;
+}
+
+.circle1 {
+    top: 8%;
+    right: 15%;
+}
+
+.circle2 {
+    left: 11%;
+    bottom: 5%;
+}
+/* 标题 */
+h2 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bolder;
+    font-family: "楷体";
+    margin-top: 30px;
+}
+.container {
+    text-align: right;
+}

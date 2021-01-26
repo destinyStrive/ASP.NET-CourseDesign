@@ -66,5 +66,55 @@ namespace ASP.NETCourseDesign.Pages.userInfo
                 }
             }
         }
+
+        protected void UploadBtn_Click(object sender, EventArgs e)
+        { 
+            if(NewImg.HasFile)
+            {
+                /* 1. 准备变量 */
+                string new_filename = NewImg.FileName;
+                string username = (string)Session["username"];
+                DateTime uploadtime = DateTime.Now;
+                int downtimes = 0;
+                string new_type = NewType.SelectedValue;
+
+                MyDb dbHelper = new MyDb();
+                int id = int.Parse(OldId.Value);
+                string old_filename = OldFilename.Value;
+                string saveDir = @"\Images\uploadedImgs\user_" + Session["username"] + "\\";
+                string appPath = Request.PhysicalApplicationPath;
+
+                /* 2. 删除数据库、服务器中原图片 */
+                string sql = "DELETE FROM ImgInfo WHERE Id = " + id;
+                dbHelper.cud(sql);
+                string old_file = System.Web.HttpContext.Current.Server.MapPath(saveDir + old_filename);
+                if (System.IO.File.Exists(old_file))
+                {
+                    System.IO.File.Delete(old_file);
+                }
+
+                /* 3. 上传新图片到服务器 */
+                string savePath = appPath + saveDir + new_filename;
+                NewImg.SaveAs(savePath);
+
+                /* 4. 新图片插入数据库 */
+                sql = "INSERT INTO ImgInfo (name, username, uploadtime, type, downtimes, imgpath) values " +
+                    "(@name, @username, @uploadtime, @type, @downtimes, @imgpath)";
+                SqlParameter[] param = new SqlParameter[6];
+                param[0] = new SqlParameter("@name", new_filename);
+                param[1] = new SqlParameter("@username", username);
+                param[2] = new SqlParameter("@uploadtime", uploadtime);
+                param[3] = new SqlParameter("@type", new_type);
+                param[4] = new SqlParameter("@downtimes", downtimes);
+                param[5] = new SqlParameter("@imgpath", saveDir + new_filename);
+                dbHelper.cud(sql, param);
+
+                Response.Redirect("album.aspx");
+            }
+            else
+            {
+                Response.Write("<script>alert('上传失败！')</script>");
+            }
+        }
     }
 }

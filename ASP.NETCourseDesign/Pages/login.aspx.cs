@@ -51,7 +51,7 @@ namespace ASP.NETCourseDesign.Pages
                 {
                     // 登陆成功...
                     Session["username"] = username;
-                    Response.Redirect("userInfo/album.aspx"); // 跳转到当前用户的相册页面
+                    Response.Redirect("/index.aspx"); // 跳转到当前用户的相册页面
                 }
             }
         }

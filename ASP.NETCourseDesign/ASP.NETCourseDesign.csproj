@@ -115,6 +115,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="CSS\base.css" />
+    <Content Include="CSS\index.css" />
     <Content Include="CSS\login.css" />
     <Content Include="CSS\register.css" />
     <Content Include="CSS\userInfoCss\album.css" />
@@ -135,13 +136,16 @@
     <Content Include="Images\2.jpg" />
     <Content Include="Images\3.jpg" />
     <Content Include="Images\userAlbum\上传.svg" />
+    <Content Include="Images\userAlbum\删除.svg" />
     <Content Include="Images\userInfoBkImg.jpg" />
     <Content Include="Images\userProfile\修改.svg" />
     <Content Include="Images\userProfile\完成.svg" />
     <Content Include="index.aspx" />
     <Content Include="Masters\userInfo.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Pages\imgOperation\delete.aspx" />
     <Content Include="Pages\login.aspx" />
+    <Content Include="Pages\logout.aspx" />
     <Content Include="Pages\register.aspx" />
     <Content Include="Pages\userInfo\album.aspx" />
     <Content Include="Pages\userInfo\like.aspx" />
@@ -201,12 +205,26 @@
     <Compile Include="Masters\userInfo.Master.designer.cs">
       <DependentUpon>userInfo.Master</DependentUpon>
     </Compile>
+    <Compile Include="Pages\imgOperation\delete.aspx.cs">
+      <DependentUpon>delete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\imgOperation\delete.aspx.designer.cs">
+      <DependentUpon>delete.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>
