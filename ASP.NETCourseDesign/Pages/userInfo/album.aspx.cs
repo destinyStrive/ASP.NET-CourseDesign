@@ -18,6 +18,7 @@ namespace ASP.NETCourseDesign.Pages.userInfo
             profile.Style["Style"] = "box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);background: rgba(65, 142, 245, 0.60);color: white; ";
         }
 
+        // 上传按钮
         protected void UpLoading_Click(object sender, EventArgs e)
         {
             if(!FileUpload1.HasFile || TypeList.SelectedIndex == 0)
@@ -29,6 +30,7 @@ namespace ASP.NETCourseDesign.Pages.userInfo
                 /* 1. 上传图片到服务器Images文件夹下 */
                 string savedir = @"\Images\uploadedImgs\user_" + Session["username"] + "\\"; // 指定文件夹
                 string appPath = Request.PhysicalApplicationPath;
+
                 // 没有目录就创建目录（为每个用户的上传图片创建他们各自的目录）
                 if (!Directory.Exists(appPath + savedir))
                     Directory.CreateDirectory(appPath + savedir);
@@ -40,7 +42,7 @@ namespace ASP.NETCourseDesign.Pages.userInfo
                 string name = FileUpload1.FileName;
                 string username = (string)Session["username"]; // 上传的用户就是当前参与会话的用户
                 DateTime uploadtime = DateTime.Now;
-                string type = TypeList.SelectedValue;
+                string type = TypeList.SelectedValue.Trim();
                 int downtimes = 0;
                 string imgpath = savedir + FileUpload1.FileName;
 
@@ -57,16 +59,16 @@ namespace ASP.NETCourseDesign.Pages.userInfo
                 try
                 {
                     dbHelper.cud(sql, param);
-                    Response.Redirect("album.aspx");
-                    //Response.Write("<script>alert('上传成功！')</script>");
+                    Response.Write("<script>alert('上传成功！'); location.replace('album.aspx'); </script>");
                 }
-                catch(Exception ee)
+                catch (Exception ee)
                 {
                     Response.Write(ee.Message);
                 }
             }
         }
 
+        // 更新按钮
         protected void UploadBtn_Click(object sender, EventArgs e)
         { 
             if(NewImg.HasFile)
@@ -76,7 +78,7 @@ namespace ASP.NETCourseDesign.Pages.userInfo
                 string username = (string)Session["username"];
                 DateTime uploadtime = DateTime.Now;
                 int downtimes = 0;
-                string new_type = NewType.SelectedValue;
+                string new_type = NewType.SelectedValue.Trim();
 
                 MyDb dbHelper = new MyDb();
                 int id = int.Parse(OldId.Value);
@@ -109,7 +111,7 @@ namespace ASP.NETCourseDesign.Pages.userInfo
                 param[5] = new SqlParameter("@imgpath", saveDir + new_filename);
                 dbHelper.cud(sql, param);
 
-                Response.Redirect("album.aspx");
+                Response.Write("<script>alert('修改成功！'); location.replace('album.aspx'); </script>");
             }
             else
             {

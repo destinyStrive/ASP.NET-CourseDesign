@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/userInfo.Master" AutoEventWireup="true" CodeBehind="profile.aspx.cs" Inherits="ASP.NETCourseDesign.Pages.userInfo.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="userInfo.Master" AutoEventWireup="true" CodeBehind="profile.aspx.cs" Inherits="ASP.NETCourseDesign.Pages.userInfo.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="/CSS/userInfoCss/profile.css" rel="stylesheet" type="text/css"  />
 

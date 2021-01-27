@@ -1,0 +1,57 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="userInfo.master.cs" Inherits="ASP.NETCourseDesign.Masters.userInfo" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+    <link href="/CSS/userInfoCss/masterCss.css" rel="stylesheet" />
+    <style>
+        
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+
+            <nav>
+                <ul>
+                    <li>
+                        <asp:HyperLink ID="HyperLink1" CssClass="a" runat="server" NavigateUrl="/Pages/userInfo/album.aspx">个人相册</asp:HyperLink>
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="HyperLink3" CssClass="a"  runat="server" NavigateUrl="/Pages/userInfo/profile.aspx">个人信息</asp:HyperLink>
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="HyperLink4" CssClass="a"  runat="server" NavigateUrl="/index.aspx">返回首页</asp:HyperLink>
+                    </li>
+                </ul>
+            </nav> 
+
+            <div class="content">
+                <div class="top">
+                    <div class="user_wrapper">
+                        <div class="user_img" id="UserImg" runat="server"></div>
+                        <div class="user_uname" id="UserUname" runat="server"></div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <%-- 个人相册、个人下载、个人资料的切换 --%>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+
+        </div>
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <%-- 个人相册页面中，模态框的占位符 --%>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

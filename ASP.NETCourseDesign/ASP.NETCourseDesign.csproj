@@ -135,20 +135,21 @@
     <Content Include="Images\1.jpg" />
     <Content Include="Images\2.jpg" />
     <Content Include="Images\3.jpg" />
+    <Content Include="Images\index\下载.svg" />
     <Content Include="Images\userAlbum\上传.svg" />
     <Content Include="Images\userAlbum\删除.svg" />
     <Content Include="Images\userInfoBkImg.jpg" />
     <Content Include="Images\userProfile\修改.svg" />
     <Content Include="Images\userProfile\完成.svg" />
     <Content Include="index.aspx" />
-    <Content Include="Masters\userInfo.Master" />
+    <Content Include="Pages\userInfo\userInfo.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Pages\imgOperation\delete.aspx" />
+    <Content Include="Controllers\imgController\delete.aspx" />
+    <Content Include="Controllers\imgController\download.aspx" />
     <Content Include="Pages\login.aspx" />
-    <Content Include="Pages\logout.aspx" />
+    <Content Include="Controllers\logout.aspx" />
     <Content Include="Pages\register.aspx" />
     <Content Include="Pages\userInfo\album.aspx" />
-    <Content Include="Pages\userInfo\like.aspx" />
     <Content Include="Pages\userInfo\profile.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -198,19 +199,26 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Masters\userInfo.Master.cs">
+    <Compile Include="Pages\userInfo\userInfo.Master.cs">
       <DependentUpon>userInfo.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Masters\userInfo.Master.designer.cs">
+    <Compile Include="Pages\userInfo\userInfo.Master.designer.cs">
       <DependentUpon>userInfo.Master</DependentUpon>
     </Compile>
-    <Compile Include="Pages\imgOperation\delete.aspx.cs">
+    <Compile Include="Controllers\imgController\delete.aspx.cs">
       <DependentUpon>delete.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\imgOperation\delete.aspx.designer.cs">
+    <Compile Include="Controllers\imgController\delete.aspx.designer.cs">
       <DependentUpon>delete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\imgController\download.aspx.cs">
+      <DependentUpon>download.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controllers\imgController\download.aspx.designer.cs">
+      <DependentUpon>download.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
@@ -219,11 +227,11 @@
     <Compile Include="Pages\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\logout.aspx.cs">
+    <Compile Include="Controllers\logout.aspx.cs">
       <DependentUpon>logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\logout.aspx.designer.cs">
+    <Compile Include="Controllers\logout.aspx.designer.cs">
       <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\register.aspx.cs">
@@ -239,13 +247,6 @@
     </Compile>
     <Compile Include="Pages\userInfo\album.aspx.designer.cs">
       <DependentUpon>album.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\userInfo\like.aspx.cs">
-      <DependentUpon>like.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\userInfo\like.aspx.designer.cs">
-      <DependentUpon>like.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\userInfo\profile.aspx.cs">
       <DependentUpon>profile.aspx</DependentUpon>
@@ -279,6 +280,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\uploadedImgs\" />
+    <Folder Include="Images\usersAvator\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

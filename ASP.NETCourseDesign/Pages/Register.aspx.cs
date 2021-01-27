@@ -45,7 +45,6 @@ namespace ASP.NETCourseDesign.Pages
             }
             if (hobbies == "") hobbies = "无";
             else hobbies = hobbies.Substring(0, hobbies.Length - 1);
-            string image_path = UploadPic();
             string remark = Remark.Text;
 
             // 2. 判断用户名是否已存在
@@ -60,6 +59,8 @@ namespace ASP.NETCourseDesign.Pages
             // 3. 将数据插入数据库
             if(Page.IsValid)
             {
+                string image_path = UploadPic(username);
+
                 string sql2 = "insert into UserInfo values(@username, @password, @email, @age, @sex, @hobbies, @image, @remark)";
                 SqlParameter[] params2 = new SqlParameter[8];
                 params2[0] = new SqlParameter("@username", username);
@@ -77,20 +78,20 @@ namespace ASP.NETCourseDesign.Pages
                 }
                 else
                 {
-                    Response.Write("<script>alert('注册成功！');</script>");
+                    Response.Write("<script>alert('注册成功！'); location.replace('login.aspx'); </script>");
                 }
             } 
         }
-        protected string UploadPic()
+        protected string UploadPic(string username)
         {
-            string saveDir = @"\Images\"; // 指定文件夹
+            string saveDir = @"\Images\usersAvator\user" + username + "_"; // 指定文件夹
             string appPath = Request.PhysicalApplicationPath;
             if (ImageUpload.HasFile) // 判断是否选择了图片
             {
                 // 选择了，就利用FileUpload.FileName取出选择的图片名称
                 string savePath = appPath + saveDir + ImageUpload.FileName;
                 ImageUpload.SaveAs(savePath);
-                return @"/Images/" + ImageUpload.FileName; // HiddenField存储图片路径
+                return @"/Images/usersAvator/user" + username + "_" + ImageUpload.FileName; // HiddenField存储图片路径
             }
             return null;
         }

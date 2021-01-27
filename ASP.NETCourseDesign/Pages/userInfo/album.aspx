@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/userInfo.Master" AutoEventWireup="true" CodeBehind="album.aspx.cs" Inherits="ASP.NETCourseDesign.Pages.userInfo.album" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="userInfo.Master" AutoEventWireup="true" CodeBehind="album.aspx.cs" Inherits="ASP.NETCourseDesign.Pages.userInfo.album" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
     <link href="/CSS/userInfoCss/album.css" rel="stylesheet" />
@@ -16,9 +16,6 @@
 
             var old_filename = document.getElementById("ContentPlaceHolder2_OldFilename");
             old_filename.value = name;
-
-            console.log(id);
-            console.log(name);
         }
     </script>
 </asp:Content>
@@ -28,7 +25,6 @@
         <SelectParameters>
             <asp:SessionParameter Name="username" SessionField="username" Type="String" />
         </SelectParameters>
-        
     </asp:SqlDataSource>
 
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical"
@@ -50,7 +46,7 @@
             <asp:TemplateField HeaderText="操作">
                 <ItemTemplate>
                     <a href="#popup1" class="editBtn" onclick="passIdFilename(  <%# Eval("Id") %>  , '<%# Eval("name") %>')"></a>
-                    <a href="/Pages/imgOperation/delete.aspx?Id=<%# Eval("Id") %>&Filename=<%# Eval("name") %>" onclick="return confirm('确认删除吗？');" class="deleteBtn"></a>
+                    <a href="/Controllers/imgController/delete.aspx?Id=<%# Eval("Id") %>&Filename=<%# Eval("name") %>" onclick="return confirm('确认删除吗？');" class="deleteBtn"></a>
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>

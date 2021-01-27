@@ -13,7 +13,6 @@ body {
     justify-content: center;
     align-content: center;
 }
-
 .circle1, .circle2 {
     background: white;
     background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
@@ -43,4 +42,63 @@ h2 {
 }
 .container {
     text-align: right;
+}
+/* 导航栏：类别选择、提示信息样式 */
+.navigation {
+    margin-top: 30px;
+}
+
+.dropdownmenu {
+    width: 100%;
+}
+
+.dropdownmenu ul {
+    background: gray;
+    list-style: none;
+    width: 100%;
+}
+
+.dropdownmenu li {
+    float: left;
+    position: relative;
+    width: auto;
+}
+
+.dropdownmenu a {
+    background: #30A6E6;
+    color: #FFFFFF;
+    display: block;
+    font: bold 15px/20px sans-serif;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    transition: all .25s ease;
+    border-left: 0.5px solid white;
+    border-right: 0.5px solid white;
+}
+
+.dropdownmenu li:hover a {
+    background: #000000;
+}
+/* 下载按钮样式 */
+.download_btn {
+    display: block;
+    width: 80px;
+    height: 35px;
+    text-decoration: none;
+    border: 1px solid #dcdfe6;
+    border-radius: 3px;
+    background-repeat: no-repeat;
+    background-size: 27px 27px;
+    background-position: center;
+    background-image: url('/Images/index/下载.svg');
+    background-color: #409eff;
+}
+
+.download_btn:hover {
+    background-color: #6aaff5;
+}
+
+.down_cell_style {
+    padding: 10px;
 }
