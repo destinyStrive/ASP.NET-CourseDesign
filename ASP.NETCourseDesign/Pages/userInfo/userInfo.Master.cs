@@ -15,12 +15,8 @@ namespace ASP.NETCourseDesign.Masters
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["username"] == null) return;
-
             string username = (string)Session["username"];
             string img_path = getImgPath(username);
-
-
 
             UserUname.InnerText = username;
             UserImg.Style["background-image"] = "url(" + img_path + ")";

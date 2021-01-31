@@ -1,4 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="userInfo.Master" AutoEventWireup="true" CodeBehind="album.aspx.cs" Inherits="ASP.NETCourseDesign.Pages.userInfo.album" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="userInfo.Master" 
+    AutoEventWireup="true" 
+    CodeBehind="album.aspx.cs" 
+    Inherits="ASP.NETCourseDesign.Pages.userInfo.album" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
     <link href="/CSS/userInfoCss/album.css" rel="stylesheet" />

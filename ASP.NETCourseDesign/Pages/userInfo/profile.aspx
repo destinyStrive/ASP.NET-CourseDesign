@@ -36,7 +36,7 @@
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
-</asp:GridView>
+    </asp:GridView>
 
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True" ProviderName="System.Data.SqlClient" 
         SelectCommand="SELECT [username], [age], [sex], [hobbies], [image], [remark] FROM [UserInfo] WHERE ([username] = @username)"

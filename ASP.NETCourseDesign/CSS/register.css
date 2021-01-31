@@ -2,18 +2,16 @@
 .info_table {
     padding: 50px 100px;
     border-radius: 5px;
-    box-shadow: 0 0 25px #03e9f4;
+    color: black;
+    background-color: white;
 }
 /* 底部按钮 */
 .info_table .bottom_btn {
     background-color: transparent;
     border: none;
-    
     outline: none;
-
-    color: #03e9f4;
+    color: #6aaff5;
     font-size: 14px;
-
     padding: 5px 10px;
     margin-right: 10px;
     text-decoration: none;
@@ -21,5 +19,25 @@
 .info_table .bottom_btn:hover {
     cursor: pointer;
     color: white;
-    background-color: #03e9f4;
+    background-color: #6aaff5;
+}
+
+.circle1, .circle2 {
+    background: white;
+    background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+    height: 20rem;
+    width: 20rem;
+    position: absolute;
+    border-radius: 20rem;
+    z-index: -10;
+}
+
+.circle1 {
+    top: 8%;
+    right: 20%;
+}
+
+.circle2 {
+    left: 20%;
+    bottom: 5%;
 }

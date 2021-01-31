@@ -9,18 +9,13 @@
 
     <link href="/CSS/base.css" rel="stylesheet" type="text/css" />
     <link href="/CSS/register.css" rel="stylesheet" type="text/css" />
-    <style>
-        body {
-            color: white;
-        }
-    </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:Table ID="Table1" runat="server" CssClass="info_table" BorderWidth="2px">
+        <asp:Table ID="Table1" runat="server" CssClass="info_table" >
             <asp:TableHeaderRow>
                 <asp:TableCell  ColumnSpan="3" HorizontalAlign="center">
-                    <h2 style="font-family: 楷体; margin-bottom: 20px; color: aqua; pointer-events: none">请填写个人信息</h2>
+                    <h2 style="font-family: 楷体; margin-bottom: 20px; color: red; pointer-events: none">请填写个人信息</h2>
                 </asp:TableCell>
                 <asp:TableCell></asp:TableCell>
             </asp:TableHeaderRow>
@@ -125,6 +120,9 @@
                 </asp:TableCell>
             </asp:TableFooterRow>
         </asp:Table>
+
+        <div class="circle1"></div>
+        <div class="circle2"></div>
     </form>
 </body>
 </html>

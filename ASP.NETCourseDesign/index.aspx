@@ -44,14 +44,18 @@
             <asp:BoundField DataField="name" HeaderText="图片名字" SortExpression="name" ItemStyle-HorizontalAlign="center" >
             </asp:BoundField>
             <asp:BoundField DataField="type" HeaderText="图片类型" SortExpression="type" ItemStyle-HorizontalAlign="center" />
-            <asp:BoundField DataField="username" HeaderText="上传用户" SortExpression="username" ItemStyle-HorizontalAlign="center" />
+            <asp:TemplateField HeaderText="上传用户" ItemStyle-HorizontalAlign="center">
+                <ItemTemplate>
+                    <a href="/Controllers/upUserProfile.aspx?upuser=<%# Eval("username") %>"><%# Eval("username") %></a>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="uploadtime" HeaderText="上传时间" SortExpression="uploadtime" ItemStyle-HorizontalAlign="center" >
             </asp:BoundField>
             <asp:BoundField DataField="downtimes" HeaderText="下载次数" SortExpression="downtimes" ItemStyle-HorizontalAlign="center" />
             <asp:TemplateField HeaderText="操作" ItemStyle-CssClass="down_cell_style">
                 <ItemTemplate>
                     <a class="download_btn" 
-                        href="/Controllers/imgController/download.aspx?upuser='<%# Eval("username") %>'&imgid=<%# Eval("Id") %>&imgname=<%# Eval("name") %>">
+                        href="/Controllers/imgController/download.aspx?upuser=<%# Eval("username") %>&imgid=<%# Eval("Id") %>&imgname=<%# Eval("name") %>">
                     </a>
                 </ItemTemplate>
             </asp:TemplateField>
@@ -91,6 +95,10 @@
             </PagerTemplate>
         </asp:GridView>
 
+
+
+
+
         <%--   第二个GridView用于显示分类图片   --%>
         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True" ProviderName="System.Data.SqlClient" SelectCommand="SELECT * FROM [ImgInfo] WHERE ([type] = @type)">
             <SelectParameters>
@@ -107,7 +115,11 @@
                 <asp:BoundField DataField="name" HeaderText="图片名字" SortExpression="name" ItemStyle-HorizontalAlign="center" >
                 </asp:BoundField>
                 <asp:BoundField DataField="type" HeaderText="图片类型" SortExpression="type" ItemStyle-HorizontalAlign="center" />
-                <asp:BoundField DataField="username" HeaderText="上传用户" SortExpression="username" ItemStyle-HorizontalAlign="center" />
+                <asp:TemplateField HeaderText="上传用户" ItemStyle-HorizontalAlign="center">
+                    <ItemTemplate>
+                        <a href="/Controllers/upUserProfile.aspx?upuser=<%# Eval("username") %>"><%# Eval("username") %></a>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:BoundField DataField="uploadtime" HeaderText="上传时间" SortExpression="uploadtime" ItemStyle-HorizontalAlign="center" >
                 </asp:BoundField>
                 <asp:BoundField DataField="downtimes" HeaderText="下载次数" SortExpression="downtimes" ItemStyle-HorizontalAlign="center" />

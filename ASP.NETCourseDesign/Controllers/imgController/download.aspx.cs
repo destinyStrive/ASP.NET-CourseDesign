@@ -23,9 +23,8 @@ namespace ASP.NETCourseDesign.Pages.imgOperation
                 string upuser = Request.QueryString["upuser"];
                 int imgid = int.Parse(Request.QueryString["imgid"]);
                 string imgname = Request.QueryString["imgname"];
-
                 // 2. 下载文件到客户端
-                string saveDir = @"\Images\uploadedImgs\user_" + Session["username"] + "\\";
+                string saveDir = @"\Images\uploadedImgs\user_" + upuser + "\\";
                 string appPath = Request.PhysicalApplicationPath;
                 if (!Directory.Exists(appPath + saveDir))
                     Directory.CreateDirectory(appPath + saveDir);
@@ -38,7 +37,6 @@ namespace ASP.NETCourseDesign.Pages.imgOperation
                 Response.ContentType = "application/actet-stream";
                 Response.WriteFile(fileInfo.FullName);
                 Response.Flush();
-
                 // 3. 该图片下载次数加+1
                 MyDb dbHelper = new MyDb();
                 string sql = "UPDATE ImgInfo SET downtimes = downtimes + 1 WHERE Id = " + imgid;

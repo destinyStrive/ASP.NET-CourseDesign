@@ -14,6 +14,9 @@ namespace ASP.NETCourseDesign
         protected void Page_Load(object sender, EventArgs e)
         {
             // 动态写入分类
+            Ul.InnerHtml = "";
+            Ul.InnerHtml += "<li><a href=" + "\"" + "index.aspx" + "\"" + ">全部</a></li>";
+
             MyDb dbHelper = new MyDb();
             string sql = "SELECT DISTINCT type FROM ImgInfo";
             DataTable dt = dbHelper.GetRecords(sql);

@@ -8,16 +8,11 @@
     <title></title>
 
     <link href="/CSS/userInfoCss/masterCss.css" rel="stylesheet" />
-    <style>
-        
-    </style>
-
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-
             <nav>
                 <ul>
                     <li>
@@ -40,12 +35,11 @@
                     </div>
                 </div>
                 <div class="bottom">
-                    <%-- 个人相册、个人下载、个人资料的切换 --%>
+                    <%-- 个人相册、个人资料的占位符 --%>
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
             </div>
-
         </div>
         <div class="circle1"></div>
         <div class="circle2"></div>

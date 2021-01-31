@@ -114,6 +114,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Controllers\upUserProfile.aspx" />
     <Content Include="CSS\base.css" />
     <Content Include="CSS\index.css" />
     <Content Include="CSS\login.css" />
@@ -189,6 +190,13 @@
     <Compile Include="App_Code\MyDb.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\upUserProfile.aspx.cs">
+      <DependentUpon>upUserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controllers\upUserProfile.aspx.designer.cs">
+      <DependentUpon>upUserProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
